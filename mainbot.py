@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup as bot
 
 bot = telebot.TeleBot('5685074220:AAHnl0dXFLWn4IgKoT8zIgdbYqvI2xgdhYo') # для Pomogalnic_bot
 
+
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
         name = bot.get_me()
@@ -28,46 +29,41 @@ def start(message):
     bot.send_message(message.chat.id, '\U0001F31E Что вас интересует?:', reply_markup=a)
 
 
-markupMenu= types.InlineKeyboardMarkup()
-item_back = types.InlineKeyboardButton("Вернуться к меню", callback_data="menu")
-markupMenu.add(item_back)
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
 
     if call.message:
         if call.data == 'anekdot':
-            bot.send_message(call.message.chat.id, anekdotparsing.list_of_jokes ,reply_markup=markupMenu)
-
+            bot.send_message(call.message.chat.id, anekdotparsing.list_of_jokes)
 
         if call.data == 'misli':
-            bot.send_message(call.message.chat.id, misliparsing.list_of_misli, reply_markup=markupMenu)
+            bot.send_message(call.message.chat.id, misliparsing.list_of_misli)
 
         if call.data == 'weather':
             a_weather = types.InlineKeyboardMarkup()
-            a_weather_1 = types.InlineKeyboardButton('\U00002705 Гомель', callback_data='gomel')
-            a_weather_2 = types.InlineKeyboardButton('\U00002705 Минск', callback_data='minsk')
-            a_weather_3 = types.InlineKeyboardButton('\U00002705 Витебск', callback_data='vitebsk')
-            a_weather_4 = types.InlineKeyboardButton('\U00002705 Гродно', callback_data='grodno')
-            a_weather_5 = types.InlineKeyboardButton('\U00002705 Могилёв', callback_data='mogilev')
-            a_weather_6 = types.InlineKeyboardButton('\U00002705 Брест', callback_data='brest')
+            a_weather_1 = types.InlineKeyboardButton(text='\U00002705 Гомель', callback_data='gomel')
+            a_weather_2 = types.InlineKeyboardButton(text='\U00002705 Минск', callback_data='minsk')
+            a_weather_3 = types.InlineKeyboardButton(text='\U00002705 Витебск', callback_data='vitebsk')
+            a_weather_4 = types.InlineKeyboardButton(text='\U00002705 Гродно', callback_data='grodno')
+            a_weather_5 = types.InlineKeyboardButton(text='\U00002705 Могилёв', callback_data='mogilev')
+            a_weather_6 = types.InlineKeyboardButton(text='\U00002705 Брест', callback_data='brest')
             a_weather.add(a_weather_1, a_weather_2, a_weather_3, a_weather_4, a_weather_5, a_weather_6)
             bot.send_message(call.message.chat.id, text='Выбери областной центр', reply_markup=a_weather)
 
         elif call.data == 'gomel':
-            bot.send_message(call.message.chat.id, f'Погода в Гомеле на сегодня: {weatherparsing.text_result_gomel}', reply_markup=markupMenu)
+            bot.send_message(call.message.chat.id, f'Погода в Гомеле на сегодня: {weatherparsing.text_result_gomel}     возврат в /menu')
         elif call.data == 'minsk':
-            bot.send_message(call.message.chat.id, f'Погода в Минске на сегодня: {weatherparsing.text_result_minsk}', reply_markup=markupMenu)
+            bot.send_message(call.message.chat.id, f'Погода в Минске на сегодня: {weatherparsing.text_result_minsk}     возврат в /menu')
         elif call.data == 'vitebsk':
-            bot.send_message(call.message.chat.id, f'Погода в Витебске на сегодня: {weatherparsing.text_result_vitebsk}', reply_markup=markupMenu)
+            bot.send_message(call.message.chat.id, f'Погода в Витебске на сегодня: {weatherparsing.text_result_vitebsk}     возврат в /menu')
         elif call.data == 'grodno':
-            bot.send_message(call.message.chat.id, f'Погода в Гродно на сегодня: {weatherparsing.text_result_grodno}', reply_markup=markupMenu)
+            bot.send_message(call.message.chat.id, f'Погода в Гродно на сегодня: {weatherparsing.text_result_grodno}     возврат в /menu')
         elif call.data == 'mogilev':
-            bot.send_message(call.message.chat.id, f'Погода в Могилёве на сегодня: {weatherparsing.text_result_mogilev}', reply_markup=markupMenu)
+            bot.send_message(call.message.chat.id, f'Погода в Могилёве на сегодня: {weatherparsing.text_result_mogilev}     возврат в /menu')
         elif call.data == 'brest':
-            bot.send_message(call.message.chat.id, f'Погода в Бресте на сегодня: {weatherparsing.text_result_brest}', reply_markup=markupMenu)
-        elif call.data == "back":
-            bot.send_message(call.message.chat.id, "Привет! Я бот, который расскажет о курсах валют в РБ 🇧🇾",reply_markup=markupStart)
+            bot.send_message(call.message.chat.id, f'Погода в Бресте на сегодня: {weatherparsing.text_result_brest}     возврат в /menu')
+
 
         if call.data == 'astrolog':
             a_astrolog = types.InlineKeyboardMarkup()
@@ -87,29 +83,28 @@ def callback_inline(call):
             bot.send_message(call.message.chat.id, text='Выбери свой знак зодиака:', reply_markup=a_astrolog)
 
         elif call.data == 'vodolei':
-            bot.send_message(call.message.chat.id, f'Астрологический прогноз для водолея на сегодня: {astrologiaparsing.text_result_vodolei}', reply_markup=markupMenu)
+            bot.send_message(call.message.chat.id, f'Астрологический прогноз для водолея на сегодня : {astrologiaparsing.text_result_vodolei} и возврат в /menu')
         elif call.data == 'ribi':
-            bot.send_message(call.message.chat.id, f'Астрологический прогноз для рыб на сегодня: {astrologiaparsing.text_result_ribi}', reply_markup=markupMenu)
+            bot.send_message(call.message.chat.id, f'Астрологический прогноз для рыб на сегодня: {astrologiaparsing.text_result_ribi} и возврат в /menu')
         elif call.data == 'oven':
-            bot.send_message(call.message.chat.id, f'Астрологический прогноз для овна на сегодня: {astrologiaparsing.text_result_oven}', reply_markup=markupMenu)
+            bot.send_message(call.message.chat.id, f'Астрологический прогноз для овна на сегодня: {astrologiaparsing.text_result_oven} и возврат в /menu')
         elif call.data == 'telec':
-            bot.send_message(call.message.chat.id, f'Астрологический прогноз для тельца на сегодня: {astrologiaparsing.text_result_telec}', reply_markup=markupMenu)
+            bot.send_message(call.message.chat.id, f'Астрологический прогноз для тельца на сегодня: {astrologiaparsing.text_result_telec} и возврат в /menu')
         elif call.data == 'blizneci':
-            bot.send_message(call.message.chat.id, f'Астрологический прогноз для близнеца на сегодня: {astrologiaparsing.text_result_blizneci}', reply_markup=markupMenu)
+            bot.send_message(call.message.chat.id, f'Астрологический прогноз для близнеца на сегодня: {astrologiaparsing.text_result_blizneci} и возврат в /menu')
         elif call.data == 'rak':
-            bot.send_message(call.message.chat.id, f'Астрологический прогноз для рака на сегодня: {astrologiaparsing.text_result_rak}', reply_markup=markupMenu)
-        elif call.data == 'lev':
-            bot.send_message(call.message.chat.id, f'Астрологический прогноз для льва на сегодня: {astrologiaparsing.text_result_lev}', reply_markup=markupMenu)
+            bot.send_message(call.message.chat.id, f'Астрологический прогноз для рака на сегодня: {astrologiaparsing.text_result_rak} и возврат в /menu')
+            bot.send_message(call.message.chat.id, f'Астрологический прогноз для льва на сегодня: {astrologiaparsing.text_result_lev} и возврат в /menu')
         elif call.data == 'deva':
-            bot.send_message(call.message.chat.id, f'Астрологический прогноз для девы на сегодня: {astrologiaparsing.text_result_deva}', reply_markup=markupMenu)
+            bot.send_message(call.message.chat.id, f'Астрологический прогноз для девы на сегодня: {astrologiaparsing.text_result_deva} и возврат в /menu')
         elif call.data == 'strelec':
-            bot.send_message(call.message.chat.id, f'Астрологический прогноз для стрельца на сегодня: {astrologiaparsing.text_result_strelec}', reply_markup=markupMenu)
+            bot.send_message(call.message.chat.id, f'Астрологический прогноз для стрельца на сегодня: {astrologiaparsing.text_result_strelec} и возврат в /menu')
         elif call.data == 'skorpion':
-            bot.send_message(call.message.chat.id, f'Астрологический прогноз для скорпиона на сегодня: {astrologiaparsing.text_result_scorpion}', reply_markup=markupMenu)
+            bot.send_message(call.message.chat.id, f'Астрологический прогноз для скорпиона на сегодня: {astrologiaparsing.text_result_scorpion} и возврат в /menu')
         elif call.data == 'vesi':
-            bot.send_message(call.message.chat.id, f'Астрологический прогноз для весов на сегодня: {astrologiaparsing.text_result_vesi}', reply_markup=markupMenu)
+            bot.send_message(call.message.chat.id, f'Астрологический прогноз для весов на сегодня: {astrologiaparsing.text_result_vesi} и возврат в /menu')
         elif call.data == 'kozerog':
-            bot.send_message(call.message.chat.id, f'Астрологический прогноз для козерогов на сегодня: {astrologiaparsing.text_result_kozerog}', reply_markup=markupMenu)
+            bot.send_message(call.message.chat.id, f'Астрологический прогноз для козерогов на сегодня: {astrologiaparsing.text_result_kozerog} и возврат в /menu')
 
 
 
