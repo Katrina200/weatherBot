@@ -35,7 +35,7 @@ def callback_inline(call):
 
     if call.message:
         if call.data == 'anekdot':
-            bot.send_message(call.message.chat.id, anekdotparsing.list_of_jokes)
+            bot.send_message(call.message.chat.id, anekdotparsing.an)
 
         if call.data == 'misli':
             bot.send_message(call.message.chat.id, misliparsing.list_of_misli)
@@ -94,7 +94,6 @@ def callback_inline(call):
             bot.send_message(call.message.chat.id, f'Астрологический прогноз для близнеца на сегодня: {astrologiaparsing.text_result_blizneci} и возврат в /menu')
         elif call.data == 'rak':
             bot.send_message(call.message.chat.id, f'Астрологический прогноз для рака на сегодня: {astrologiaparsing.text_result_rak} и возврат в /menu')
-            bot.send_message(call.message.chat.id, f'Астрологический прогноз для льва на сегодня: {astrologiaparsing.text_result_lev} и возврат в /menu')
         elif call.data == 'deva':
             bot.send_message(call.message.chat.id, f'Астрологический прогноз для девы на сегодня: {astrologiaparsing.text_result_deva} и возврат в /menu')
         elif call.data == 'strelec':
