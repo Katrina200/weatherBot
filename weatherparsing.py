@@ -51,23 +51,3 @@ def mogilev_parsing(url):
     result_mogilev = soup.find_all('p', class_='description-weather')
     return [c.text for c in result_mogilev]
 text_result_mogilev = mogilev_parsing(URL_MOGILEV)
-
-
-#если это (закоментированный код) оставить, то бот не работает, как сказал однокурсник, это нам нужно только для вывода в консоль
-# если раскоментировать, будет в консоли вывод
-'''
-if city == 'Минск':
-    print(f'Погода в Минске. {text_result_minsk}')
-elif city == 'Могилёв':
-    print(f'Погода в Могилёве. {text_result_mogilev}')
-elif city == 'Гомель':
-    print(f'Погода в Гомеле. {text_result_gomel}')
-elif city == 'Гродно':
-    print(f'Погода в Гродно. {text_result_grodno}')
-elif city == 'Брест':
-    print(f'Погода в Бресте. {text_result_brest}')
-elif city == 'Витебск':
-    print(f'Погода в Витебске. {text_result_vitebsk}')
-else:
-    print(f'Такого областного центра нет в Беларуси. Попробуйте еще раз!')
-'''
