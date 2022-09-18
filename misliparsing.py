@@ -10,11 +10,5 @@ def parser (url):
     misli = soup.find_all('div', class_='cont_text')
     return [c.text for c in misli]
 list_of_misli = parser(URL)
-random.shuffle(list_of_misli)
-#print(list_of_misli)
-def jokmislis(message):
-    if message.text.lower() in '123456789':
-        bot.send_message(message.chat.id, list_of_misli[0])
-        del list_of_misli[0]
-    else:
-        bot.send_message(message.chat.id, 'Введите любую цифру: ')
+random.choice(list_of_misli)
+
