@@ -100,33 +100,3 @@ def vodolei_parsing(url):
     result_vodolei = soup.find_all('p', class_='mtZOt')
     return [c.text for c in result_vodolei]
 text_result_vodolei = vodolei_parsing(URL_VODOLEI)
-
-# это комментируем т.к. с этим оно надо для вывода в терминал, нам уже не надо в бот это
-'''
-if zodiak == 'Овен':
-    print(f'Гороскоп на сегодня для овна. {text_result_oven}')
-elif zodiak == 'Телец':
-    print(f'Гороскоп на сегодня для тельца. {text_result_telec}')
-elif zodiak == 'Близнецы':
-    print(f'Гороскоп на сегодня для близнецов. {text_result_blizneci}')
-elif zodiak == 'Рак':
-    print(f'Гороскоп на сегодня для раков. {text_result_rak}')
-elif zodiak == 'Лев':
-    print(f'Гороскоп на сегодня для льва. {text_result_lev}')
-elif zodiak == 'Дева':
-    print(f'Гороскоп на сегодня для девы. {text_result_deva}')
-elif zodiak == 'Весы':
-    print(f'Гороскоп на сегодня для весов. {text_result_vesi}')
-elif zodiak == 'Скорпион':
-    print(f'Гороскоп на сегодня для скорпиона. {text_result_scorpion}')
-elif zodiak == 'Стрелец':
-    print(f'Гороскоп на сегодня для стрельца. {text_result_strelec}')
-elif zodiak == 'Козерог':
-    print(f'Гороскоп на сегодня для козерога. {text_result_kozerog}')
-elif zodiak == 'Рыбы':
-    print(f'Гороскоп на сегодня для рыб. {text_result_ribi}')
-elif zodiak == 'Водолей':
-    print(f'Гороскоп на сегодня для водолея. {text_result_vodolei}')
-else:
-    print(f'Такого знака зодиака нет, либо вы ошиблись в написании. Попробуйте еще раз!')
-'''
